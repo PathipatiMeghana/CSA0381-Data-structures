@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+int main() {
+ char haystack[] = "hello world";
+ char needle[] = "world";
+ int hayLen = strlen(haystack);
+ int needleLen = strlen(needle);
+ int index = -1;
+ if (needleLen <= hayLen) {
+ for (int i = 0; i <= hayLen - needleLen; ++i) {
+ int j;
+ for (j = 0; j < needleLen; ++j) {
+ if (haystack[i + j] != needle[j]) {
+ break;
+ }
+ }
+ if (j == needleLen) {
+ index = i; // Match found at index i
+ break;
+ }
+ }
+ }
+ if (index != -1) {
+ printf("Substring found at index: %d\n", index);
+ } else {
+ printf("Substring not found\n");
+ }
+ return 0;
+}
+Example 1:
+Input: haystack = "sadbutsad", needle = "sad"
+Output: 0
+Explanation: "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+Input: haystack = "leetcode", needle = "leeto"
+Output: -1
+Explanation: "leeto" did not occur in "leetcode", so we return -1.
